@@ -8,10 +8,13 @@ source_url:
 
 # {{title}}
 
-## 요약
+## 정의
 - 
 
-## 바로 쓰는 레시피
+## 설명
+- 
+
+## 예시
 - 
 
 ## 코드 스니펫
@@ -20,6 +23,6 @@ source_url:
 ```
 
 ## 관련 노트
-- literature: [[02 Literature Notes/]]
-- permanent: [[03 Permanent Notes/]]
-- project: [[10 Projects/Active/]]
+- permanent: [[01 Permanent/]]
+- moc: [[02 MOCs/]]
+- project: [[10 Projects/]]

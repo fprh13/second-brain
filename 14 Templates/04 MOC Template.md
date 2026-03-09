@@ -18,7 +18,7 @@ owner:
 - [[ ]]
 
 ## 관련 프로젝트
-- [[10 Projects/Active/]]
+- [[10 Projects/]]
 
 ## 점검
 - [ ] 깨진 링크 없음

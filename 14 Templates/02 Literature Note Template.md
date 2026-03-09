@@ -30,6 +30,6 @@ retrieved_at: {{date}}
 - [ ] [[ ]]
 
 ## PARA 연결
-- project: [[10 Projects/Active/]]
-- area: [[11 Areas/Backend Engineering/]]
-- resource: [[12 Resources/Docs/]]
+- project: [[10 Projects/]]
+- area: [[11 Areas/]]
+- resource: [[12 Resources/]]

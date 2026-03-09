@@ -1,53 +1,56 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-This repository is an Obsidian knowledge vault organized for **Zettelkasten + PARA** workflows.
+This repository is an Obsidian vault focused on personal knowledge management.
 
-- `00 Inbox` to `04 MOCs`: knowledge capture, refinement, permanent notes, and maps of content.
-- `10 Projects`, `11 Areas`, `12 Resources`, `13 Archive`: PARA execution and lifecycle management.
-- `14 Templates`: canonical note templates (Inbox, Literature, Permanent, Project, ADR, Debug).
-- `15 Attachments/inbox`: default attachment drop location.
-- `.obsidian/`: workspace and plugin configuration. Edit carefully and keep changes minimal.
+- `README.md`: source of truth for vault architecture (Zettelkasten + PARA), linking flow, and note-writing process.
+- `OBSIDIAN_STYLE_GUIDE.md`: writing/style standard for naming, frontmatter, links, tags, and attachments.
+- Root folders: `00 Inbox`, `01 Permanent`, `02 MOCs`, `10 Projects`, `11 Areas`, `12 Resources`, `13 Archive`.
+- `attachments/`: binary assets organized under `diagrams/`, `screenshots/`, and `files/`.
+- `.obsidian/`: local Obsidian app settings (not tracked).
 
-## Operational Workflow (Current)
-- Capture first in `00 Inbox`, then triage to one target: Fleeting/Literature/Permanent/Project/Resource.
-- Keep Inbox notes lightweight; a single concrete next action is enough.
-- When triaged, mark `status` clearly (for example: `triage` -> `routed`) and leave a link to the promoted note.
-- For projects, default to **one note file in** `10 Projects/Active`.
-- Create a per-project folder only when the project accumulates many related files (meeting notes, attachments, references).
+Use numbered folder names to preserve sort order and intent (for example `00 Inbox`, `01 Permanent`, `10 Projects`).
 
 ## Build, Test, and Development Commands
-There is no build/test runtime for this repository (Markdown content only).
-Use lightweight checks before submitting changes:
+There is no software build or CI test pipeline in this repository. Use lightweight checks before committing:
 
-- `rg --files` — quick file inventory.
-- `find . -maxdepth 2 -type d | sort` — verify folder layout.
-- `sed -n '1,120p' README.md` — spot-check rendered structure.
+- `git status --short`: confirm only intended files changed.
+- `git diff -- README.md OBSIDIAN_STYLE_GUIDE.md AGENTS.md AGENT_KOR.md`: review guideline and architecture edits.
+- `find . -maxdepth 1 -type d | sort`: verify root vault structure.
+- `rg "TODO|FIXME" README.md OBSIDIAN_STYLE_GUIDE.md AGENTS.md AGENT_KOR.md`: catch unfinished placeholders.
 
-If `markdownlint` is available locally, run it on changed docs.
+If you use Obsidian locally, validate links and navigation (especially MOCs and backlinks) before opening a PR.
 
 ## Coding Style & Naming Conventions
-- Write content in Markdown with clear headings and short sections.
-- Prefer concise, actionable language over long prose.
-- File/folder naming patterns:
-  - Zettelkasten folders keep numeric prefixes (`00`-`04`).
-  - PARA folders keep numeric prefixes (`10`-`13`).
-  - Templates use ordered names like `03 Permanent Note Template.md`.
-- For note files, use either descriptive Korean/English titles or timestamp-prefixed titles when chronological ordering is needed.
-- Preserve the language style of each document (English for operations docs like `AGENTS.md`, Korean-first for user-facing vault guide in `README.md`).
+Write documentation in Markdown with short sections and clear headings.
+
+- Use `#`, `##`, `###` hierarchies consistently.
+- Prefer concise paragraphs and bullet lists over long prose.
+- Keep vault folder names prefixed with two-digit ordering (`00`, `01`, ...).
+- Keep note and folder names descriptive and stable; avoid frequent renames that break links.
+- Follow `OBSIDIAN_STYLE_GUIDE.md` for note-level style (frontmatter, links, tag policy, and attachment handling).
 
 ## Testing Guidelines
-- Verify internal links (`[[...]]`) for changed notes.
-- Ensure template fields and frontmatter keys stay consistent across related templates.
-- For structural changes, confirm all expected directories still exist and attachment/template paths in `.obsidian/app.json` and `.obsidian/templates.json` remain valid.
-- If you update guidance docs, verify examples still match existing template filenames under `14 Templates/`.
+Testing is content validation:
+
+- Ensure internal links resolve in Obsidian graph/view.
+- Ensure note structure follows the flow in `README.md`: `Inbox -> classify -> link -> reflect in MOC`.
+- Ensure asset references point to files under `attachments/` and are linkable from notes.
+
+For large edits, do a manual pass on sample notes across `Permanent`, `Projects`, and `Resources`.
 
 ## Commit & Pull Request Guidelines
-No reliable Git history is available in this workspace, so use this standard:
+Current history uses concise, scoped commit subjects (example: `init: second-brain`). Follow this style:
 
-- Commit format: `type(scope): summary` (e.g., `docs(templates): refine permanent note template`).
-- Keep commits focused (structure, templates, or docs; avoid mixing).
-- PRs should include:
-  - What changed and why
-  - Affected paths (e.g., `14 Templates/`, `README.md`)
-  - Screenshots only if Obsidian UI behavior is relevant
+- Commit format: `<scope>: <summary>` (e.g., `structure: add attachments subfolders`).
+- Keep commits focused on one conceptual change.
+- In PRs, include: purpose, changed paths, migration/rename notes, and screenshots only when Obsidian UI behavior matters.
+
+Link related issues/tasks when available and call out any backlink-breaking changes explicitly.
+
+## Bilingual Guide Sync Rule
+Keep contributor guides synchronized at the repository root:
+
+- When `AGENTS.md` is updated, update `AGENT_KOR.md` in the same change.
+- When `AGENT_KOR.md` is updated, reflect the same policy/content changes in `AGENTS.md`.
+- For pull requests touching either file, include both files in the diff unless the change is explicitly marked as translation-only.

@@ -21,5 +21,5 @@ status: proposed
 - 
 
 ## Related
-- Project: [[10 Projects/Active/]]
-- Permanent: [[03 Permanent Notes/]]
+- Project: [[10 Projects/]]
+- Permanent: [[01 Permanent/]]

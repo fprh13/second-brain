@@ -17,10 +17,10 @@ review_cycle: weekly
 - 
 
 ## 현재 프로젝트
-- [[10 Projects/Active/]]
+- [[10 Projects/]]
 
 ## 핵심 지식 노트
-- [[03 Permanent Notes/]]
+- [[01 Permanent/]]
 
 ## 주간 점검
 - [ ] 리스크 점검

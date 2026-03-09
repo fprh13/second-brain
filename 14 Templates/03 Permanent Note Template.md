@@ -31,12 +31,12 @@ confidence: medium
 - 선행: [[ ]]
 - 확장: [[ ]]
 - 반대: [[ ]]
-- MOC: [[04 MOCs/]]
+- MOC: [[02 MOCs/]]
 
 ## PARA 연결
-- project: [[10 Projects/Active/]]
-- area: [[11 Areas/Backend Engineering/]]
-- resource: [[12 Resources/Patterns/]]
+- project: [[10 Projects/]]
+- area: [[11 Areas/]]
+- resource: [[12 Resources/]]
 
 ## 적용 체크
 - [ ] 현재 프로젝트에 적용

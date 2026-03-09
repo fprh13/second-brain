@@ -21,14 +21,18 @@ repo:
 - ADR: [[ ]]
 
 ## 연결 노트
-- MOC: [[04 MOCs/]]
-- Permanent: [[ ]]
+- MOC: [[02 MOCs/]]
+- Permanent: [[01 Permanent/]]
+- Resource: [[12 Resources/]]
 
 ## 실행 계획
 - [ ] 
 
 ## 리스크
 - 
+
+## 종료 처리
+- [ ] 완료 시 `13 Archive`로 이동
 
 ## 회고
 - 

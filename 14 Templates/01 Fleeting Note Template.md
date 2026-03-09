@@ -19,7 +19,8 @@ context:
 
 ## 연결 후보
 - [[ ]]
+- MOC: [[02 MOCs/]]
 
 ## 승격 조건
-- [ ] Literature로 정리
+- [ ] Resource로 정리
 - [ ] Permanent로 일반화

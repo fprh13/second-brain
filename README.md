@@ -1,69 +1,91 @@
-# 개발자용 옵시디언 가이드 (Zettelkasten + PARA)
+# 개인 지식 관리 시스템 설계 계획서
 
-이 볼트는 개발자가 **생각 정리(제텔카스텐)**와 **업무 관리(PARA)**를 같이 하도록 만든 구조입니다.
+_Obsidian Vault Architecture_
 
-## 1. 가장 쉬운 운영 원칙
+## 1. 설계 목적
+본 Vault는 장기적으로 축적되는 지식, 기록, 프로젝트 자료를 효율적으로 관리하기 위한 개인 지식 관리 시스템이다.
 
-- 모르면 일단 `00 Inbox`에 캡처
-- 완성하려고 쓰지 말고, 사실/문제/느낌만 짧게 기록
-- 당일 또는 다음날 트리아지(분류)로 다음 단계로 보냄
+핵심 목표:
+- 지식의 장기 축적
+- 정보 간 연결을 통한 지식 그래프 형성
+- 프로젝트 및 활동 기록 관리
+- 구조적으로 확장 가능한 Vault 유지
 
-## 2. 실제 워크플로우 (추천)
+이를 위해 **Zettelkasten 방식의 지식 연결 구조**와 **PARA 방식의 정보 관리 구조**를 결합한다.
 
-1. `00 Inbox`에 빠르게 기록
-2. 하루 1회 트리아지
-3. 아래 중 하나로 승격
-- `01 Fleeting Notes`: 짧은 생각 스냅샷
-- `02 Literature Notes`: 읽은 자료 요약
-- `03 Permanent Notes`: 재사용 가능한 지식
-- `10 Projects/Active`: 실행이 필요한 업무/문제
-- `12 Resources/*`: 참고 자료 보관
+## 2. 전체 구조
+Vault는 두 영역으로 구성된다.
+- 지식 생성 영역 (Zettelkasten)
+- 정보 관리 영역 (PARA)
 
-트리아지 후에는 인박스 노트에 결과 링크를 남기면 추적이 쉽습니다.
+```text
+Vault
+├─ 00 Inbox
+├─ 01 Permanent
+├─ 02 MOCs
+├─ 10 Projects
+├─ 11 Areas
+├─ 12 Resources
+└─ 13 Archive
+```
 
-## 3. 어디에 적어야 할지 빠른 기준
+숫자 접두어는 정렬 안정성과 영역 구분을 위해 사용한다.
 
-- 갑자기 떠오른 생각/할 일: `00 Inbox`
-- 문서/강의/블로그 요약: `02 Literature Notes`
-- 원칙/패턴/교훈: `03 Permanent Notes`
-- 진행 중 업무/실행계획: `10 Projects/Active`
-- 장애 원인 분석: `10 Projects/Active` (Debug 템플릿)
-- 아키텍처/기술 의사결정: `10 Projects/Active` (ADR 템플릿)
-- 자주 쓰는 코드/명령어: `12 Resources/Snippets`
-- 공식 문서/레퍼런스 모음: `12 Resources/Docs`
+## 3. 각 영역의 역할
+| 영역 | 역할 | 특징 |
+|---|---|---|
+| Inbox | 임시 기록 공간 | 빠른 메모, 구조화 이전 단계 |
+| Permanent | 이해 기반 지식 노드 | 개념 간 연결 중심, 지식 그래프 핵심 |
+| MOCs | 지식 지도 (Map of Content) | 노드 묶음, 탐색 허브 |
+| Projects | 목표 기반 작업 기록 | 기간성 작업, 완료 후 Archive 이동 |
+| Areas | 지속 관리 영역 | 종료 시점 없음, 책임 영역 관리 |
+| Resources | 참고 자료 저장 | 개념/외부 지식 정리, 자료 보관 |
+| Archive | 종료된 정보 저장 | 볼트 정리 유지, 기록 보존 |
 
-## 4. 프로젝트 노트 관리 방식
+## 4. 노드 연결 규칙
+그래프 구조 안정성을 위해 다음 원칙을 사용한다.
 
-- 기본은 `10 Projects/Active`에 **프로젝트당 노트 파일 1개**
-- 관련 자료가 많아질 때만 프로젝트 폴더로 승격
-- 예시: `10 Projects/Active/프로젝트명/README.md`
+- 기본 흐름: `Project -> Resource -> Permanent`
+- Resource -> Permanent: 개념에서 사고로 연결
+- Permanent <-> Permanent: 지식 간 관계 강화
+- MOC: 관련 노드를 묶는 허브
 
-즉, 처음부터 전부 폴더로 나누지 않고 커지는 프로젝트만 분리합니다.
+## 5. 작성 흐름
+```text
+Inbox 기록
+ -> 분류 (Permanent / Resource / Project 등)
+ -> 관련 노드 연결
+ -> MOC 구조 반영
+```
 
-## 5. 템플릿 사용법
+## 6. 노트 템플릿
+### Permanent 템플릿
+- 개념
+- 핵심 내용
+- 관련 노드
 
-1. 새 노트 생성
-2. 명령 팔레트 열기
-3. `Insert template` 실행
-4. `14 Templates`에서 선택
+### Resource 템플릿
+- 정의
+- 설명
+- 예시
 
-주요 템플릿:
-- `00 Inbox Template`
-- `02 Literature Note Template`
-- `03 Permanent Note Template`
-- `05 Project Note Template`
-- `08 ADR Template`
-- `09 Debug Log Template`
+### Project 템플릿
+- 목적
+- 구현 내용
+- 문제 해결
+- 관련 노드
 
-## 6. 저에게 요청하는 예시
+## 7. 이미지 및 데이터 관리
+이미지 및 첨부 파일은 별도 디렉토리에서 관리하고, 노트에서는 링크로 참조한다.
 
-- `이 Inbox를 어디로 보낼지 분류해줘.`
-- `이 문헌노트를 Permanent Note로 승격해줘.`
-- `이 문제를 Project Note(목표/DoD/실행계획)로 정리해줘.`
-- `이 장애 내용을 Debug Log + 재발방지 노트로 만들어줘.`
+```text
+attachments
+├─ diagrams
+├─ screenshots
+└─ files
+```
 
-## 7. 폴더 구조 요약
-
-- Zettelkasten: `00`~`04`
-- PARA: `10`~`13`
-- 운영: `14 Templates`, `15 Attachments`
+## 8. 확장 전략
+- 지식 노드는 지속적으로 추가 가능
+- MOC를 통해 구조적 확장
+- Projects 완료 시 Archive로 이동

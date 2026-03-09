@@ -12,11 +12,14 @@ source:
 - 
 
 ## 분류
-- [ ] Fleeting (`01 Fleeting Notes`)
-- [ ] Literature (`02 Literature Notes`)
-- [ ] Permanent (`03 Permanent Notes`)
-- [ ] Project (`10 Projects/Active`)
-- [ ] Resource (`12 Resources/Docs`)
+- [ ] Fleeting (`00 Inbox`에 임시 유지)
+- [ ] Literature (`12 Resources`)
+- [ ] Permanent (`01 Permanent`)
+- [ ] Project (`10 Projects`)
+- [ ] Area (`11 Areas`)
 
 ## 다음 액션 (24시간 내)
 - [ ] 
+
+## 연결 후보
+- MOC: [[02 MOCs/]]
