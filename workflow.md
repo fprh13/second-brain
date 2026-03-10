@@ -24,7 +24,7 @@ User Request
 ## 기본 워크플로우
 1. `VaultPM`이 요청 범위와 수정 가능 여부를 판단한다.
 2. `InboxClassifier`가 노트 성격을 `Permanent`, `Project`, `Area`, `Resource`, `Archive` 중 하나로 분류한다.
-3. `Project`로 분류되면 프로젝트명을 기준으로 `10 Projects/<프로젝트명>/` 폴더를 만들고 대표 노트 위치를 결정한다.
+3. `Project`로 분류되면 프로젝트명을 기준으로 `10 Projects/<프로젝트명>/` 폴더를 만들고 대표 노트 위치를 결정한다. 기본 하위 폴더는 `docs/`, `work/`를 생성한다.
 4. `KnowledgeWriter`가 제목, 본문, frontmatter를 가다듬는다.
 5. `LinkArchitect`가 관련 노트와 MOC 연결을 제안한다.
 6. `Reviewer`가 구조, 누락, 링크, 과도한 변형 여부를 점검한다.
@@ -72,6 +72,7 @@ needs_confirmation:
 - 적합한 MOC가 없으면 새 MOC를 만들지 말고 필요 여부만 제안한다.
 - 자동 이동이나 대량 리네임 전에는 추천안을 우선 보여준다.
 - Project 노트의 최종 위치는 `10 Projects/<프로젝트명>/<프로젝트명>.md`를 기본값으로 한다.
+- Project 폴더에는 기본적으로 `docs/`, `work/` 하위 폴더를 함께 둔다.
 
 ## 스킬 참조
 - 작성 규칙: `skills/writing/SKILL.md`

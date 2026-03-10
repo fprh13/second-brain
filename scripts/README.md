@@ -13,6 +13,7 @@
 - `triage-note.sh [--apply] <note-path>`: 단일 노트의 분류와 MOC 후보를 추천하고, 선택 시 추천 필드를 frontmatter에 기록
 - `review-note.sh [--apply] <note-path>`: 단일 노트의 제목, 타입, 링크, MOC 추적 필드를 검토하고, 선택 시 MOC 검토 상태를 frontmatter에 기록
 - `promote-note.sh [--apply] <note-path>`: triage 결과를 기준으로 대상 폴더와 경로를 계산하고, 선택 시 실제 폴더 생성과 파일 이동을 수행
+- Project 승격 시 대표 노트와 함께 `docs/`, `work/` 하위 폴더를 기본 생성한다.
 
 ## 예시
 ```sh

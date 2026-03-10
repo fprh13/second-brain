@@ -88,6 +88,7 @@ final_title="${recommended_title:-${title:-Untitled}}"
 target_dir="$ROOT_DIR/$recommended_folder"
 target_path="$target_dir/$final_title.md"
 move_mode="move"
+project_subdirs=()
 
 if [[ "$recommended_type" == "project" ]]; then
   if [[ -z "$recommended_project_folder" ]]; then
@@ -96,6 +97,7 @@ if [[ "$recommended_type" == "project" ]]; then
   fi
   target_dir="$ROOT_DIR/$recommended_project_folder"
   target_path="$target_dir/$final_title.md"
+  project_subdirs=("docs" "work")
 fi
 
 if [[ "$NOTE_PATH" == "$target_path" ]]; then
@@ -107,6 +109,12 @@ echo "  source: ${NOTE_PATH#$ROOT_DIR/}"
 echo "  recommended_type: $recommended_type"
 echo "  target_dir: ${target_dir#$ROOT_DIR/}"
 echo "  target_path: ${target_path#$ROOT_DIR/}"
+if [[ "$recommended_type" == "project" ]]; then
+  echo "  project_subdirs:"
+  for subdir in "${project_subdirs[@]}"; do
+    echo "    - ${recommended_project_folder}/${subdir}"
+  done
+fi
 echo "  mode: $move_mode"
 echo "  apply_mode: $APPLY_MODE"
 
@@ -115,6 +123,11 @@ if [[ "$APPLY_MODE" != "true" ]]; then
 fi
 
 mkdir -p "$target_dir"
+if [[ "$recommended_type" == "project" ]]; then
+  for subdir in "${project_subdirs[@]}"; do
+    mkdir -p "$target_dir/$subdir"
+  done
+fi
 
 if [[ "$move_mode" != "noop" ]]; then
   if [[ -e "$target_path" ]]; then
@@ -144,3 +157,9 @@ esac
 
 echo "applied:"
 echo "  final_path: ${NOTE_PATH#$ROOT_DIR/}"
+if [[ "$recommended_type" == "project" ]]; then
+  echo "  created_subdirs:"
+  for subdir in "${project_subdirs[@]}"; do
+    echo "    - ${recommended_project_folder}/${subdir}"
+  done
+fi

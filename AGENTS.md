@@ -60,7 +60,7 @@ Guardrails:
 - Preserve note meaning unless the user explicitly requests transformation.
 - Prefer wikilinks over tags when a concrete note relationship exists.
 - Keep generated metadata aligned with `skills/writing/SKILL.md`.
-- When promoting a note to `Project`, create `10 Projects/<project-name>/` and place the main project note inside that folder.
+- When promoting a note to `Project`, create `10 Projects/<project-name>/`, place the main project note inside that folder, and create `docs/` and `work/` subfolders by default.
 - Do not create new MOCs automatically.
 - Consider MOC reflection only when a relevant existing MOC already exists.
 - Prefer one best-fit MOC for a note instead of inserting the same note into multiple MOCs.
