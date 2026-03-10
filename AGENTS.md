@@ -80,7 +80,10 @@ For large edits, do a manual pass on sample notes across `Permanent`, `Projects`
 ## Commit & Pull Request Guidelines
 Current history uses concise, scoped commit subjects (example: `init: second-brain`). Follow this style:
 
-- Commit format: `<scope>: <summary>` (e.g., `structure: add attachments subfolders`).
+- Commit format: `<scope>: <summary>`.
+- Write `<summary>` primarily in Korean so the change intent is immediately clear to Korean-speaking maintainers.
+- English is allowed when it is the clearest name for a technical term, product name, or established concept, but default to Korean phrasing.
+- Example: `workflow: AI 오케스트레이션 규칙 추가`, `structure: 첨부파일 폴더 정리`.
 - Keep commits focused on one conceptual change.
 - In PRs, include: purpose, changed paths, migration/rename notes, and screenshots only when Obsidian UI behavior matters.
 
