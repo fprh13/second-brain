@@ -4,22 +4,21 @@ created: {{date}} {{time}}
 tags: [inbox]
 status: triage
 source:
+moc_candidate:
+moc_decision: pending
+needs_moc_review: true
 ---
 
 # {{title}}
 
 ## 캡처
-- 
-
-## 분류
-- [ ] Fleeting (`00 Inbox`에 임시 유지)
-- [ ] Literature (`12 Resources`)
-- [ ] Permanent (`01 Permanent`)
-- [ ] Project (`10 Projects`)
-- [ ] Area (`11 Areas`)
+- 자유롭게 적는다. 문장, 불릿, 로그 아무 형식이나 가능
 
 ## 다음 액션 (24시간 내)
 - [ ] 
 
-## 연결 후보
-- MOC: [[02 MOCs/]]
+## 메모
+- 나중에 분류나 링크가 필요하면 비워둬도 된다
+
+## 연결 후보 (선택)
+- [[ ]]

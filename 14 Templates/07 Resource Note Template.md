@@ -4,25 +4,21 @@ created: {{date}} {{time}}
 tags: [resource]
 source_type: doc
 source_url:
+moc_candidate:
+moc_decision: pending
+needs_moc_review: true
 ---
 
 # {{title}}
 
-## 정의
+## 요약
+- 자료 내용을 간단히 정리한다
+
+## 핵심 포인트
 - 
 
-## 설명
+## 메모
 - 
 
-## 예시
-- 
-
-## 코드 스니펫
-```text
-
-```
-
-## 관련 노트
-- permanent: [[01 Permanent/]]
-- moc: [[02 MOCs/]]
-- project: [[10 Projects/]]
+## 관련 노트 (선택)
+- [[ ]]

@@ -5,34 +5,21 @@ tags: [project]
 status: active
 deadline:
 repo:
+moc_candidate:
+moc_decision: pending
+needs_moc_review: true
 ---
 
 # {{title}}
 
-## 목표
-- 
+## 개요
+- 프로젝트 목적, 기간, 팀, 스택 중 필요한 것만 적는다
 
-## 완료 기준 (DoD)
-- [ ] 기능 요구 충족
-- [ ] 테스트 통과
-- [ ] 문서 업데이트
+## 진행 메모
+- 현재 상태, 결정 사항, 이슈를 자유롭게 적는다
 
-## 기술 결정
-- ADR: [[ ]]
+## 다음 액션
+- [ ]
 
-## 연결 노트
-- MOC: [[02 MOCs/]]
-- Permanent: [[01 Permanent/]]
-- Resource: [[12 Resources/]]
-
-## 실행 계획
-- [ ] 
-
-## 리스크
-- 
-
-## 종료 처리
-- [ ] 완료 시 `13 Archive`로 이동
-
-## 회고
-- 
+## 관련 노트 (선택)
+- [[ ]]

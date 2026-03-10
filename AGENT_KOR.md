@@ -4,8 +4,10 @@
 이 저장소는 개인 지식 관리를 위한 Obsidian 볼트입니다.
 
 - `README.md`: 볼트 아키텍처(Zettelkasten + PARA), 링크 흐름, 작성 절차의 기준 문서
-- `OBSIDIAN_STYLE_GUIDE.md`: 네이밍, frontmatter, 링크, 태그, 첨부 규칙을 담은 작성 스타일 기준 문서
+- `workflow.md`: AI 보조 노트 처리를 위한 멀티 에이전트 워크플로우 문서
+- `skills/`: 작성, 분류, 연결, 오케스트레이션, 검토 규칙을 담은 역할별 스킬 문서
 - 루트 폴더: `00 Inbox`, `01 Permanent`, `02 MOCs`, `10 Projects`, `11 Areas`, `12 Resources`, `13 Archive`
+- `14 Templates`: Obsidian 및 AI 보조 작성에서 사용하는 노트 템플릿
 - `attachments/`: `diagrams/`, `screenshots/`, `files/`로 분류된 첨부 자산
 - `.obsidian/`: 로컬 Obsidian 설정(Git 추적 제외)
 
@@ -15,9 +17,9 @@
 이 저장소에는 소프트웨어 빌드/CI 테스트 파이프라인이 없습니다. 커밋 전 아래 점검을 사용합니다.
 
 - `git status --short`: 의도한 파일만 변경되었는지 확인
-- `git diff -- README.md OBSIDIAN_STYLE_GUIDE.md AGENTS.md AGENT_KOR.md`: 가이드/구조 문서 변경 검토
+- `git diff -- README.md AGENTS.md AGENT_KOR.md workflow.md skills`: 가이드/구조 문서 변경 검토
 - `find . -maxdepth 1 -type d | sort`: 루트 볼트 구조 확인
-- `rg "TODO|FIXME" README.md OBSIDIAN_STYLE_GUIDE.md AGENTS.md AGENT_KOR.md`: 미완료 표시 검색
+- `rg "TODO|FIXME" README.md AGENTS.md AGENT_KOR.md workflow.md skills`: 미완료 표시 검색
 
 로컬에서 Obsidian을 사용하는 경우 PR 전 링크 탐색(MOC, 백링크 포함)을 앱에서 확인합니다.
 
@@ -28,13 +30,49 @@
 - 긴 문단보다 간결한 문장과 목록 우선
 - 볼트 폴더는 두 자리 번호 접두어(`00`, `01`, ...) 유지
 - 노트/폴더명은 설명 가능하고 안정적으로 유지하여 링크 손상을 방지
-- 노트 단위 스타일(frontmatter, 링크, 태그, 첨부)은 `OBSIDIAN_STYLE_GUIDE.md`를 기준으로 적용
+- 노트 단위 스타일(frontmatter, 링크, 태그, 첨부)은 `skills/writing/SKILL.md`를 기준으로 적용
+
+## 멀티 에이전트 운영 모델
+이 볼트는 AI 보조 노트 작업에 가벼운 멀티 에이전트 워크플로우를 사용합니다.
+
+- `VaultPM`: 요청을 해석하고 워크플로우를 선택하며 볼트 규칙을 적용
+- `InboxClassifier`: 노트 성격을 분류하고 대상 폴더를 추천
+- `KnowledgeWriter`: 의미를 유지하면서 문장을 정리
+- `LinkArchitect`: 위키링크, MOC, 백링크 기회를 제안
+- `Reviewer`: 구조, 누락, 링크, 볼트 규칙 정합성을 최종 점검
+
+에이전트 오케스트레이션은 `workflow.md`, 역할별 능력은 `skills/` 하위 문서를 기준으로 합니다.
+
+표준 팀 흐름:
+- 분류
+- 정리
+- 연결
+- 검토
+
+에이전트 출력은 다음 흐름을 따라야 합니다.
+- `00 Inbox` 캡처
+- 적절한 위치로 분류
+- 관련 링크 추가
+- 필요 시 MOC 반영
+
+운영 가드레일:
+- 대량 이동/리네임 전에는 항상 추천안을 먼저 제시
+- 사용자가 명시적으로 요청하지 않으면 원래 의미를 보존
+- 구체적 관계가 있으면 태그보다 위키링크를 우선
+- 생성 메타데이터는 `skills/writing/SKILL.md`와 정합성을 유지
+- 노트를 `Project`로 승격할 때는 `10 Projects/<프로젝트명>/` 폴더를 만들고 대표 프로젝트 노트를 그 안에 둔다
+- 새 MOC를 자동 생성하지 않는다
+- 관련된 기존 MOC가 있을 때만 MOC 반영 여부를 판단한다
+- 하나의 노트는 가장 적합한 단일 MOC에 우선 연결하고 여러 MOC에 중복 삽입하지 않는다
+- 인접 주제와의 연결은 중복 MOC 삽입 대신 본문 링크나 관련 노트 링크로 처리한다
+- 적합한 MOC가 없으면 필요 여부만 보고하고 자동 생성하지 않는다
 
 ## 테스트 가이드라인
 테스트는 콘텐츠 검증 중심입니다.
 
 - Obsidian 그래프/뷰에서 내부 링크가 정상 해석되는지 확인
 - 노트 구조가 `README.md` 흐름(`Inbox -> 분류 -> 연결 -> MOC 반영`)을 따르는지 확인
+- MOC 반영은 기존 허브 기준으로만 수행되고 여러 MOC에 중복 삽입되지 않았는지 확인
 - 첨부 참조가 `attachments/` 하위 파일을 올바르게 가리키는지 확인
 
 대규모 변경 시 `Permanent`, `Projects`, `Resources`에서 샘플 노트를 만들어 수동 점검합니다.

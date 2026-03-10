@@ -6,38 +6,22 @@ updated: {{date}} {{time}}
 tags: [permanent, zettelkasten]
 status: evergreen
 confidence: medium
+moc_candidate:
+moc_decision: pending
+needs_moc_review: true
 ---
 
 # {{title}}
 
-## 핵심 주장 (한 문장)
-- 
+## 핵심 내용
+- 한 문장이어도 좋고, 여러 불릿이어도 괜찮다
 
-## 언제 유효한가
-- 
+## 설명
+- 왜 중요한지, 언제 쓰는지 자유롭게 적는다
 
-## 근거
+## 관련 노트
+- [[ ]]
 - [[ ]]
 
-## 예시 코드
-```text
-
-```
-
-## 반례/한계
-- 
-
-## 연결
-- 선행: [[ ]]
-- 확장: [[ ]]
-- 반대: [[ ]]
-- MOC: [[02 MOCs/]]
-
-## PARA 연결
-- project: [[10 Projects/]]
-- area: [[11 Areas/]]
-- resource: [[12 Resources/]]
-
-## 적용 체크
-- [ ] 현재 프로젝트에 적용
-- [ ] 적용 결과 회고 기록
+## 메모 (선택)
+- 예시, 한계, 반례가 있으면 적는다

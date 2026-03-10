@@ -7,19 +7,11 @@ status: proposed
 
 # ADR: {{title}}
 
-## Context
-- 
+## 배경
+- 왜 결정이 필요한지 적는다
 
-## Decision
-- 
+## 결정
+- 무엇을 선택했는지 적는다
 
-## Consequences
-- Positive:
-- Negative:
-
-## Alternatives Considered
-- 
-
-## Related
-- Project: [[10 Projects/]]
-- Permanent: [[01 Permanent/]]
+## 메모
+- 이유, 영향, 대안이 있으면 자유롭게 적는다
