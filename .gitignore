@@ -37,6 +37,7 @@ Temporary Items
 ### Obsidian ###
 # config dir
 .obsidian/
+.omx/
 
 ### Windows ###
 # Windows thumbnail cache files
