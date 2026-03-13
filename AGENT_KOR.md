@@ -3,95 +3,64 @@
 ## 프로젝트 구조 및 모듈 구성
 이 저장소는 개인 지식 관리를 위한 Obsidian 볼트입니다.
 
-- `README.md`: 볼트 아키텍처(Zettelkasten + PARA), 링크 흐름, 작성 절차의 기준 문서
-- `workflow.md`: AI 보조 노트 처리를 위한 멀티 에이전트 워크플로우 문서
-- `skills/`: 작성, 분류, 연결, 오케스트레이션, 검토 규칙을 담은 역할별 스킬 문서
+- `README.md`: 저장소 소개 문서
+- `VAULT_RULES.md`: 상세 볼트 운영 정책 문서
 - 루트 폴더: `00 Inbox`, `01 Permanent`, `02 MOCs`, `10 Projects`, `11 Areas`, `12 Resources`, `13 Archive`
-- `14 Templates`: Obsidian 및 AI 보조 작성에서 사용하는 노트 템플릿
-- `attachments/`: `diagrams/`, `screenshots/`, `files/`로 분류된 첨부 자산
+- `14 Templates`: Obsidian 및 AI 보조 작업에서 사용하는 템플릿
+- `attachments/`: `diagrams/`, `screenshots/`, `files/`로 구분된 첨부 자산
 - `.obsidian/`: 로컬 Obsidian 설정(Git 추적 제외)
 
-정렬 안정성과 의미 유지를 위해 폴더명 숫자 접두어(예: `00 Inbox`, `01 Permanent`, `10 Projects`)를 유지합니다.
+정렬 안정성과 의미 유지를 위해 숫자 접두어 폴더명을 유지합니다.
 
 ## 빌드, 테스트, 개발 명령
-이 저장소에는 소프트웨어 빌드/CI 테스트 파이프라인이 없습니다. 커밋 전 아래 점검을 사용합니다.
+이 저장소에는 소프트웨어 빌드나 CI 파이프라인이 없습니다. 커밋 전 아래 점검을 사용합니다.
 
 - `git status --short`: 의도한 파일만 변경되었는지 확인
-- `git diff -- README.md AGENTS.md AGENT_KOR.md workflow.md skills`: 가이드/구조 문서 변경 검토
+- `git diff -- README.md VAULT_RULES.md AGENTS.md AGENT_KOR.md '14 Templates'`: 규칙 및 템플릿 변경 검토
 - `find . -maxdepth 1 -type d | sort`: 루트 볼트 구조 확인
-- `rg "TODO|FIXME" README.md AGENTS.md AGENT_KOR.md workflow.md skills`: 미완료 표시 검색
+- `find '00 Inbox' '01 Permanent' '02 MOCs' '10 Projects' '11 Areas' '12 Resources' '13 Archive' -type f -name '*.md' | sed 's#.*/##' | sort | uniq -d`: 중복 노트 파일명 확인
+- `rg "TODO|FIXME" README.md VAULT_RULES.md AGENTS.md AGENT_KOR.md '14 Templates'`: 미완료 표시 검색
 
-로컬에서 Obsidian을 사용하는 경우 PR 전 링크 탐색(MOC, 백링크 포함)을 앱에서 확인합니다.
+로컬에서 Obsidian을 사용하는 경우 내부 링크와 그래프 가독성을 함께 확인합니다.
 
-## 코딩 스타일 및 네이밍 규칙
-문서는 Markdown으로 작성하며, 짧고 명확한 섹션을 유지합니다.
+## 실행 규칙
+볼트 운영 정책은 `VAULT_RULES.md`를 따릅니다. 이 문서는 실행 시 필요한 가드레일만 추가합니다.
 
-- 헤딩 계층 `#`, `##`, `###`를 일관되게 사용
-- 긴 문단보다 간결한 문장과 목록 우선
-- 볼트 폴더는 두 자리 번호 접두어(`00`, `01`, ...) 유지
-- 노트/폴더명은 설명 가능하고 안정적으로 유지하여 링크 손상을 방지
-- 노트 단위 스타일(frontmatter, 링크, 태그, 첨부)은 `skills/writing/SKILL.md`를 기준으로 적용
-
-## 멀티 에이전트 운영 모델
-이 볼트는 AI 보조 노트 작업에 가벼운 멀티 에이전트 워크플로우를 사용합니다.
-
-- `VaultPM`: 요청을 해석하고 워크플로우를 선택하며 볼트 규칙을 적용
-- `InboxClassifier`: 노트 성격을 분류하고 대상 폴더를 추천
-- `KnowledgeWriter`: 의미를 유지하면서 문장을 정리
-- `LinkArchitect`: 위키링크, MOC, 백링크 기회를 제안
-- `Reviewer`: 구조, 누락, 링크, 볼트 규칙 정합성을 최종 점검
-
-에이전트 오케스트레이션은 `workflow.md`, 역할별 능력은 `skills/` 하위 문서를 기준으로 합니다.
-
-표준 팀 흐름:
-- 분류
-- 정리
-- 연결
-- 검토
-
-에이전트 출력은 다음 흐름을 따라야 합니다.
-- `00 Inbox` 캡처
-- 적절한 위치로 분류
-- 관련 링크 추가
-- 필요 시 MOC 반영
-
-운영 가드레일:
-- 대량 이동/리네임 전에는 항상 추천안을 먼저 제시
-- 사용자가 명시적으로 요청하지 않으면 원래 의미를 보존
-- 구체적 관계가 있으면 태그보다 위키링크를 우선
-- 생성 메타데이터는 `skills/writing/SKILL.md`와 정합성을 유지
-- 노트를 `Project`로 승격할 때는 `10 Projects/<프로젝트명>/` 폴더를 만들고 대표 프로젝트 노트를 그 안에 두며, 기본적으로 `docs/`, `work/` 하위 폴더도 함께 만든다
-- 새 MOC를 자동 생성하지 않는다
-- 관련된 기존 MOC가 있을 때만 MOC 반영 여부를 판단한다
-- 하나의 노트는 가장 적합한 단일 MOC에 우선 연결하고 여러 MOC에 중복 삽입하지 않는다
-- 인접 주제와의 연결은 중복 MOC 삽입 대신 본문 링크나 관련 노트 링크로 처리한다
-- 적합한 MOC가 없으면 필요 여부만 보고하고 자동 생성하지 않는다
+- 사용자가 요청하지 않으면 노트 파일을 이동하지 않음
+- 노트 위치는 사용자가 결정하고, AI는 추천만 수행
+- 스크린샷, 파일 같은 첨부는 필요 시 `attachments/`로 이동 가능
+- 치명적 오타 외에는 사용자 문장을 재작성하지 않음
+- 기존 `##` 섹션 간 내용 이동 금지
+- Markdown 가독성 편집만 허용
+- 코드, 명령어, 설정, 로그는 fenced code block으로 작성
+- 노트 링크는 `관련 노트` 섹션 하나로 관리
+- Obsidian 그래프가 꼬이지 않도록 불필요한 교차 링크를 줄임
+- 템플릿 갱신 시 불필요한 frontmatter와 메타데이터를 제거
 
 ## 테스트 가이드라인
 테스트는 콘텐츠 검증 중심입니다.
 
-- Obsidian 그래프/뷰에서 내부 링크가 정상 해석되는지 확인
-- 노트 구조가 `README.md` 흐름(`Inbox -> 분류 -> 연결 -> MOC 반영`)을 따르는지 확인
-- MOC 반영은 기존 허브 기준으로만 수행되고 여러 MOC에 중복 삽입되지 않았는지 확인
-- 첨부 참조가 `attachments/` 하위 파일을 올바르게 가리키는지 확인
+- 내부 링크가 Obsidian에서 정상 해석되는지 확인
+- 관련 노트 링크가 자연스러운지 확인
+- 중복 파일이나 중복 노트명이 있는지 확인
+- 위치가 어색한 노트는 추천만 하고 자동 이동하지 않는지 확인
+- 첨부가 `attachments/` 아래를 올바르게 가리키는지 확인
+- 템플릿이 불필요한 메타데이터를 다시 도입하지 않는지 확인
 
-대규모 변경 시 `Permanent`, `Projects`, `Resources`에서 샘플 노트를 만들어 수동 점검합니다.
+대규모 수정 시 `Permanent`, `Projects`, `Resources`, `MOCs`에서 샘플 노트를 수동 점검합니다.
 
 ## 커밋 및 PR 가이드라인
-현재 히스토리는 간결한 범위 기반 형식(예: `init: second-brain`)을 사용합니다.
+모든 커밋 메시지는 `notes: sync`를 사용합니다.
 
-- 커밋 형식: `<scope>: <summary>`
-- `<summary>`는 한국어 화자가 바로 이해할 수 있도록 한글 중심으로 작성합니다.
-- 기술 용어, 제품명, 널리 굳어진 개념은 영어를 써도 되지만 기본은 한글 표현을 우선합니다.
-- 예시: `workflow: AI 오케스트레이션 규칙 추가`, `structure: 첨부파일 폴더 정리`
-- 한 커밋에는 하나의 개념적 변경만 포함
-- PR에는 목적, 변경 경로, 마이그레이션/리네임 영향, UI 동작 관련 시 스크린샷 포함
+- 커밋 메시지: `notes: sync`
+- scope나 summary를 변경하지 않음
+- PR에는 목적, 변경 경로, 마이그레이션 메모, UI 동작 관련 시 스크린샷 포함
 
-관련 이슈/작업이 있으면 연결하고, 백링크 깨짐 가능성이 있으면 명시합니다.
+백링크나 그래프 구조 위험이 있으면 명시합니다.
 
 ## 이중 언어 가이드 동기화 규칙
 루트의 기여자 가이드는 항상 동기화합니다.
 
 - `AGENTS.md`를 수정하면 같은 변경에서 `AGENT_KOR.md`도 함께 수정합니다.
-- `AGENT_KOR.md`를 수정하면 동일 정책/내용 변경을 `AGENTS.md`에도 반영합니다.
-- 두 파일 중 하나를 수정하는 PR은 번역 전용 변경이 아닌 한 두 파일을 모두 포함합니다.
+- `AGENT_KOR.md`를 수정하면 동일 정책 변경을 `AGENTS.md`에도 반영합니다.
+- 두 파일 중 하나를 수정하는 PR은 번역 전용이 아닌 한 두 파일을 모두 포함합니다.

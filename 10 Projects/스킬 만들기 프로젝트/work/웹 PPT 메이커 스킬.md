@@ -1,21 +1,3 @@
----
-type: project
-created: 2026-03-12 23:25
-tags: [project]
-status: active
-source:
-repo:
-moc_candidate:
-moc_decision: skipped
-needs_moc_review: false
-recommended_type: project
-recommended_folder: 10 Projects
-recommended_title: 웹 PPT 메이커 스킬
-recommended_project_folder: 10 Projects/스킬 만들기 프로젝트
-confidence: high
-classifier: manual-review
----
-
 # 웹 PPT 메이커 스킬
 
 ## 개요
@@ -24,12 +6,12 @@ classifier: manual-review
 - 초기 목표는 라이브러리 의존 없이 슬라이드 레이아웃, 전환, 네비게이션, 전체화면, 슬라이드 번호 표시를 지원하는 흐름을 만드는 것이다.
 - 리서치, 구현 수정, 스킬화, 후속 개선 요청이 하나의 작업 맥락으로 이어졌다.
 
-## 목표
+## 메모
+
+### 목표
 - 웹 프레젠테이션 구현 원칙을 정리한다.
 - `/ppt-maker` 계열 스킬의 요구사항과 제약을 명확히 남긴다.
 - 프롬프트 로그 대신 의사결정과 변경 포인트를 중심으로 기록한다.
-
-## 진행 메모
 ### 초기 리서치 범위
 - 슬라이드 레이아웃과 DOM 구조
 - 키보드, 마우스, 터치 기반 네비게이션
@@ -165,9 +147,10 @@ $skill-creator 순수 HTML, CSS, JavaScript로 웹 프레젠테이션을 만드�
 
 ## 현재 판단
 - 이 노트는 `스킬 만들기 프로젝트` 아래에서 웹 프레젠테이션 스킬 제작을 다루는 작업 노트다.
-- 기존 `02 MOCs`에 노트가 없어 MOC 반영은 건너뛴다.
 - 관련 맥락은 [[스킬 만들기 프로젝트]], [[OMX]], [[AI 에이전트 오케스트레이션 정리]]와 함께 본다.
-
 
 ## 관련 노트 (선택)
 - [[스킬 만들기 프로젝트]]
+- [[OMX]]
+- [[AI 에이전트 오케스트레이션 정리]]
+- [[Develop]]
