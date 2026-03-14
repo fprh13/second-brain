@@ -44,5 +44,3 @@ Vault
 | `14 Templates` | 노트 템플릿 |
 | `attachments` | 스크린샷, 다이어그램, 일반 파일 |
 
-## 템플릿
-템플릿은 [14 Templates](14%20Templates/)에 있습니다.
