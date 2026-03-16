@@ -1,9 +1,19 @@
+---
+created: 2026-03-13
+tags:
+  - resource
+---
+
 # OMX
+
+---
 
 ## 📄 요약
 - OMX는 Codex CLI 위에 팀 오케스트레이션, 스킬 실행, 메모리, 운영 제어를 얹는 애드온이다.
 - 단일 세션 중심 작업을 여러 역할과 단계로 분해해 더 큰 작업을 다루기 쉽게 만든다.
 - 포크가 아니라 Codex의 프롬프트, 스킬, MCP, 설정 주입 같은 확장 지점을 활용한다.
+
+---
 
 ## 📄 본문
 ### 핵심 기능
@@ -48,6 +58,9 @@ omx hooks ...
 - CLI 레퍼런스: https://yeachan-heo.github.io/oh-my-codex-website/docs.html#cli-reference
 - 릴리스 노트: https://yeachan-heo.github.io/oh-my-codex-website/docs.html#release-notes
 
-## 🔗 관련 노트 (선택)
+## 📚 참고 및 링크
+- [[ ]]
+
+## 🔗 관련 노트
 - [[AI 에이전트 오케스트레이션 정리]]
 - [[Develop]]

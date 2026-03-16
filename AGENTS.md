@@ -1,3 +1,6 @@
+---
+created: 2026-03-15 03:27:29
+---
 # Repository Guidelines
 
 ## Project Structure & Module Organization
@@ -35,7 +38,7 @@ Follow `VAULT_RULES.md` for vault policy. This file only adds execution-specific
 - Put code, commands, config, and logs in fenced code blocks.
 - Use a single `related notes` section for note links.
 - Keep the Obsidian graph readable and avoid tangled cross-links.
-- Avoid unnecessary frontmatter and remove obsolete metadata from templates when updating them.
+- Keep only minimal required frontmatter in templates such as `created` and a note-type tag, and remove obsolete metadata when updating templates.
 
 ## Testing Guidelines
 Testing is content validation:
@@ -45,7 +48,7 @@ Testing is content validation:
 - Ensure duplicate files or duplicate note names are surfaced.
 - Ensure misplaced notes are recommended, not moved, unless the user asked for the move.
 - Ensure attachments point to files under `attachments/`.
-- Ensure templates do not reintroduce unnecessary metadata.
+- Ensure templates keep required minimal metadata and do not reintroduce unnecessary metadata.
 
 For large edits, manually inspect a few notes across `Permanent`, `Projects`, `Resources`, and `MOCs`.
 

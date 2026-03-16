@@ -1,4 +1,12 @@
+---
+created: 2026-03-11
+tags:
+  - project
+---
+
 # 카우머치(carumuch) 프로젝트
+
+---
 
 ## 📄 개요
 - AI 기반 차량 사고 분석 및 견적 입찰 서비스
@@ -27,17 +35,19 @@
 - API 문서 자동 생성 및 배포 파이프라인 구축 (RestDocs + OAS3)
 - AI 견적서 처리 플로우를 비동기 이벤트 기반으로 재설계
 
-## 📄 메모
-현재 관심사는 V2 리팩토링과 백엔드 아키텍처 재설계다.
+---
 
-- GitHub 레포: https://github.com/carumuch/carumuch-backend
-- API 문서: https://carumuch-api-docs.vercel.app
+## ✏️ 메모
+현재 관심사는 V2 리팩토링과 백엔드 아키텍처 재설계다.
 
 ## 🏃 다음 액션
 - [ ] API 문서 자동 생성 및 배포 파이프라인 작업 노트 작성
 - [ ] JWT 인증/인가 재설계 메모 작성
 - [ ] AI 견적 비동기 이벤트 처리 플로우 정리
 
+## 📚 참고 및 링크
+- GitHub 레포: https://github.com/carumuch/carumuch-backend
+- API 문서: https://carumuch-api-docs.vercel.app
 
-## 🔗 관련 노트 (선택)
+## 🔗 관련 노트
 - [[Develop]]
