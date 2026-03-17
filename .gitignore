@@ -38,6 +38,8 @@ Temporary Items
 # config dir
 .obsidian/
 .omx/
+.makemd/
+.space/
 
 # Personal interview prep notes
 11 Areas/취업/면접/
