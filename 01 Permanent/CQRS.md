@@ -44,4 +44,4 @@ Command and Query Responsibility Segregation 데이터 저장소에 대한 읽�
 ## 📚 참고 및 링크
 
 ## 🔗 관련 노트
-- [[MOC: Develop]]
+- [[Develop]]
