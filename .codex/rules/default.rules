@@ -1,0 +1,37 @@
+# 옵시디언 rules 정의
+
+## git add & commit 허용
+
+prefix_rule(
+    pattern = ["git", "add"],
+    decision = "allow",
+    justification = "Allow staging changes without prompting.",
+    match = [
+        "git add .",
+        "git add -A",
+        "git add README.md",
+    ],
+)
+
+prefix_rule(
+    pattern = ["git", "commit"],
+    decision = "allow",
+    justification = "Allow local commits without prompting.",
+    match = [
+        'git commit -m "notes: sync"',
+        "git commit --amend",
+    ],
+)
+
+## git push 허락
+
+prefix_rule(
+    pattern = ["git", "push"],
+    decision = "prompt",
+    justification = "Always ask before pushing to a remote.",
+    match = [
+        "git push",
+        "git push origin main",
+        "git push --force-with-lease",
+    ],
+)

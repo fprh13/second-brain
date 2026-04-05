@@ -37,7 +37,6 @@ Temporary Items
 ### Obsidian ###
 # config dir
 .obsidian/
-.codex/
 .makemd/
 .space/
 

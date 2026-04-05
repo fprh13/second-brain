@@ -1,69 +1,167 @@
 ---
 created: 2026-03-15 03:27:29
 ---
-# Repository Guidelines
+# AGENTS.md
 
-## Project Structure & Module Organization
+## Purpose
+
 This repository is an Obsidian vault for personal knowledge management.
 
-- `README.md`: repository overview document.
-- `VAULT_RULES.md`: detailed vault policy document.
-- Root folders: `00 Inbox`, `01 Permanent`, `02 MOCs`, `10 Projects`, `11 Areas`, `12 Resources`, `13 Archive`.
-- `14 Templates`: note templates used by Obsidian and AI-assisted work.
-- `attachments/`: binary assets organized under `diagrams/`, `screenshots/`, and `files/`.
-- `.obsidian/`: local Obsidian settings (not tracked).
+Your role is to assist in creating, refining, and organizing notes while preserving structure, readability, and consistency.
 
-Use numbered folder names to preserve sort order and intent.
+Follow `VAULT_RULES.md` as the primary policy document.
 
-## Build, Test, and Development Commands
-There is no software build or CI pipeline. Use lightweight checks before committing:
+---
 
-- `git status --short`: confirm only intended files changed.
-- `git diff -- README.md VAULT_RULES.md AGENTS.md AGENT_KOR.md '14 Templates'`: review rule and template changes.
-- `find . -maxdepth 1 -type d | sort`: verify the root vault structure.
-- `find '00 Inbox' '01 Permanent' '02 MOCs' '10 Projects' '11 Areas' '12 Resources' '13 Archive' -type f -name '*.md' | sed 's#.*/##' | sort | uniq -d`: detect duplicate note filenames.
-- `rg "TODO|FIXME" README.md VAULT_RULES.md AGENTS.md AGENT_KOR.md '14 Templates'`: catch unfinished placeholders.
+## Core Rules
 
-If you use Obsidian locally, validate internal links and graph readability before opening a PR.
+- Do not move note files unless explicitly requested by the user.
+    
+- The user decides note location. You may recommend better placement.
+    
+- Do not rewrite user content except for critical typo fixes.
+    
+- Do not change the meaning or intent of any note.
+    
+- Keep edits minimal, precise, and reversible.
+    
 
-## Execution Rules
-Follow `VAULT_RULES.md` for vault policy. This file only adds execution-specific guardrails.
+---
 
-- Do not move note files unless the user explicitly requests it.
-- The user decides note location. AI may recommend a better location.
-- Attachments such as screenshots and files may be moved into `attachments/` when needed.
-- Do not rewrite the user's text except fatal typo fixes.
-- Do not move content across existing `##` sections.
-- Keep Markdown edits limited to readability improvements.
-- Put code, commands, config, and logs in fenced code blocks.
-- Use a single `related notes` section for note links.
-- Keep the Obsidian graph readable and avoid tangled cross-links.
-- Keep only minimal required frontmatter in templates such as `created` and a note-type tag, and remove obsolete metadata when updating templates.
+## Editing Rules
 
-## Testing Guidelines
-Testing is content validation:
+- Do not move content across existing `##` sections.
+    
+- Preserve the original structure of notes.
+    
+- Limit changes to readability improvements only.
+    
+- Avoid excessive formatting or stylistic rewriting.
+    
+- Use fenced code blocks for commands, config, logs, and code.
+    
 
-- Ensure internal links resolve in Obsidian.
-- Ensure related-note links are coherent and do not create obvious graph tangles.
-- Ensure duplicate files or duplicate note names are surfaced.
-- Ensure misplaced notes are recommended, not moved, unless the user asked for the move.
-- Ensure attachments point to files under `attachments/`.
-- Ensure templates keep required minimal metadata and do not reintroduce unnecessary metadata.
+---
 
-For large edits, manually inspect a few notes across `Permanent`, `Projects`, `Resources`, and `MOCs`.
+## Vault Structure Rules
 
-## Commit & Pull Request Guidelines
-Use `notes: sync` for every commit message.
+Respect the vault organization:
 
-- Commit message: `notes: sync`
-- Do not vary the scope or summary.
-- In PRs, include purpose, changed paths, migration notes, and screenshots only when Obsidian UI behavior matters.
+- `00 Inbox` → temporary notes
+    
+- `01 Permanent` → evergreen knowledge
+    
+- `02 MOCs` → map of content
+    
+- `10 Projects` → active work
+    
+- `11 Areas` → ongoing responsibilities
+    
+- `12 Resources` → reference material
+    
+- `13 Archive` → inactive content
+    
+- `14 Templates` → reusable templates
+    
+- Do not rename folders.
+    
+- Do not reorganize folder structure.
+    
 
-Call out any backlink or graph-structure risk explicitly.
+---
 
-## Bilingual Guide Sync Rule
-Keep contributor guides synchronized at the repository root:
+## Linking Rules
 
-- When `AGENTS.md` is updated, update `AGENT_KOR.md` in the same change.
-- When `AGENT_KOR.md` is updated, reflect the same policy changes in `AGENTS.md`.
-- For pull requests touching either file, include both files unless the change is explicitly translation-only.
+- Use `[[Note Name]]` for internal links.
+    
+- Maintain a single `related notes` section per note.
+    
+- Avoid excessive or unnecessary links.
+    
+- Preserve graph readability and avoid tangled connections.
+    
+
+---
+
+## Attachment Rules
+
+- Store attachments under `attachments/`.
+    
+- Organize into `diagrams/`, `screenshots/`, and `files/`.
+    
+- Ensure all attachment references are valid.
+    
+
+---
+
+## Template Rules
+
+- Keep minimal required frontmatter (`created`, note-type tag).
+    
+- Remove obsolete metadata when updating templates.
+    
+- Do not introduce unnecessary fields.
+    
+
+---
+
+## Validation Rules
+
+- Ensure internal links resolve correctly.
+    
+- Detect duplicate note filenames.
+    
+- Suggest corrections for misplaced notes (do not move automatically).
+    
+- Ensure attachments are properly referenced.
+    
+- Maintain consistency across notes.
+    
+
+---
+
+## Commit Rules
+
+- Always use `notes: sync` as the commit message.
+    
+- Do not generate arbitrary commit messages.
+    
+- Keep commit messages consistent across all changes.
+    
+
+---
+
+## Pull Request Rules
+
+- Include purpose, changed paths, and migration notes.
+    
+- Include screenshots only when Obsidian UI behavior is affected.
+    
+- Explicitly mention backlink or graph structure risks if relevant.
+    
+
+---
+
+## Language Rules
+
+- Default to Korean unless the note is intentionally written in English.
+    
+
+---
+
+## Safety Rules
+
+- Never perform destructive operations.
+    
+- Never reorganize the vault without explicit instruction.
+    
+- When uncertain, do not act and ask for clarification.
+    
+
+---
+
+## Sync Rules
+
+- Keep `AGENTS.md` and `AGENT_KOR.md` synchronized.
+    
+- When updating one, update the other unless it is translation-only.

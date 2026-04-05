@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Save"
+  short_description: "현재 브랜치 기준으로 볼트 변경을 커밋·푸시합니다."
+  default_prompt: "Use $obsidian-save to commit all current vault changes with the required message and push the current branch."

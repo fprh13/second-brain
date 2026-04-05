@@ -1,0 +1,11 @@
+model = "gpt-5.4"
+model_reasoning_effort = "medium"
+
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+# AGENTS.md 외에 추가 규칙 문서도 참고하게 하고 싶을 때
+project_doc_fallback_filenames = ["vault_rule.md"]
+
+# 문서량이 많을 때 instruction 탐색 여유를 조금 늘림
+project_doc_max_bytes = 65536
