@@ -1,5 +1,5 @@
 ---
-created: <% tp.file.creation_date("YYYY-MM-DD") %>
+created: 2026-04-06
 tags:
   - project
 ---
@@ -482,3 +482,4 @@ designs/
 
 ## 🔗 관련 노트
 - [[Codex CLI 및 터미널 입력 단축키]]
+- [[하네스 공식문서 100번 읽은 것처럼 만들어드림 정리]]
