@@ -23,6 +23,17 @@ prefix_rule(
     ],
 )
 
+
+## 옵시디언 저장 스크립트 허용
+prefix_rule(
+    pattern = ["bash", ".codex/skills/obsidian-save/scripts/obsidian_save.sh"],
+    decision = "allow",
+    justification = "Obsidian 노트 저장 및 동기화를 위한 스크립트입니다.",
+    match = [
+      "bash .codex/skills/obsidian-save/scripts/obsidian_save.sh",
+    ],
+)
+
 ## git push 허락
 
 prefix_rule(
