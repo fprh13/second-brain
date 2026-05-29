@@ -79,6 +79,7 @@ Respect the vault organization:
 - Avoid excessive or unnecessary links.
     
 - Preserve graph readability and avoid tangled connections.
+- Do not create links to or from `11 Areas/취업/TIL`.
     
 
 ---
@@ -156,6 +157,7 @@ Respect the vault organization:
 - Never reorganize the vault without explicit instruction.
     
 - When uncertain, do not act and ask for clarification.
+- Treat `11 Areas/취업/TIL` as a read-only study area written by someone else. Do not edit notes there, do not add links to it, and do not include it in Git tracking.
     
 
 ---
