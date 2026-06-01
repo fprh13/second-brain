@@ -520,7 +520,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjcmVhdG9yIiwicm9sZSI6IlJPT
 
 ## DB 스키마 또는 ERD 설명
 
-![ERD](docs/ERD.png)
+![ERD](../../../attachments/diagrams/아카데미_ERD.png)
 
 ### 주요 테이블
 
