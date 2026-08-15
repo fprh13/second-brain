@@ -50,4 +50,5 @@ tags:
 - API 문서: https://carumuch-api-docs.vercel.app
 
 ## 🔗 관련 노트
-- [[Develop]]
+- [[docs/AI 아키텍처|AI 아키텍처]]
+- [[docs/AI agent TiDD 기록|AI agent TiDD 기록]]

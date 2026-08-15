@@ -45,9 +45,8 @@ tags:
 - 정확도, 오차율, 신뢰도 점수를 설명할 평가 체계는 아직 확보되지 않은 상태로 보입니다.
 
 ## 📚 참고 및 링크
-- [[10 Projects/카우머치(carumuch) 프로젝트/docs/AI 아키텍처 참고 자료/AI 시스템 분석]]
-- [[10 Projects/카우머치(carumuch) 프로젝트/docs/AI 아키텍처 참고 자료/AI 시스템 용어 정리]]
-- [[10 Projects/카우머치(carumuch) 프로젝트/docs/AI 아키텍처 참고 자료/AI 시스템 평가]]
 
 ## 🔗 관련 노트
-- [[10 Projects/카우머치(carumuch) 프로젝트/카우머치(carumuch) 프로젝트]]
+ - [[10 Projects/카우머치(carumuch) 프로젝트/docs/AI 아키텍처 참고 자료/AI 시스템 분석]]
+- [[10 Projects/카우머치(carumuch) 프로젝트/docs/AI 아키텍처 참고 자료/AI 시스템 용어 정리]]
+- [[10 Projects/카우머치(carumuch) 프로젝트/docs/AI 아키텍처 참고 자료/AI 시스템 평가]]

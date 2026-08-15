@@ -107,4 +107,4 @@ Page<BodyShop> findByKeyword(String keyword);
 ## 📚 참고 및 링크
 
 ## 🔗 관련 노트
-- [[Develop]]
+- [[../02 MOCs/Development Environment]]

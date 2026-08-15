@@ -161,4 +161,3 @@ $skill-creator 순수 HTML, CSS, JavaScript로 웹 프레젠테이션을 만드�
 ## 🔗 관련 노트
 - [[OMX]]
 - [[AI 에이전트 오케스트레이션 정리]]
-- [[Develop]]
