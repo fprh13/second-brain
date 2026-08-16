@@ -132,7 +132,11 @@ public class Team {
 
 ## ✏️ 메모
 
+---
+
 ## 📚 참고 및 링크
 
+---
+
 ## 🔗 관련 노트
-- [[../02 MOCs/Development Environment]]
+- 

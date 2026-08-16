@@ -319,9 +319,13 @@ tmux
 - 처음에는 `tmux`, `Ctrl + b d`, `tmux attach`, `tmux ls` 네 가지만 익혀도 기본 사용 흐름을 빠르게 잡을 수 있습니다.
 - AI CLI를 함께 쓸 때는 역할별로 pane을 나누면 로그 확인과 결과 비교가 쉬워집니다.
 
+---
+
 ## 📚 참고 및 링크
 - https://github.com/tmux/tmux/wiki
 - https://github.com/tmux/tmux/wiki/Getting-Started
+
+---
 
 ## 🔗 관련 노트
 - [[OMX]]

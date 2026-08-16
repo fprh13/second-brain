@@ -15,6 +15,7 @@ JPA 영역입니다.
 
 ## ✏️ 메모
 [[../01 Permanent/@Param|@Param]]
+[[../01 Permanent/Cascade vs orphanRemoval|Cascade vs orphanRemoval]]
 
 ## 📚 참고 및 링크
 - [[ ]]

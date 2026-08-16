@@ -135,6 +135,7 @@ eventSource.onerror = (error) => {
 
 ## 📚 참고 및 링크
 
+---
 
 ## 🔗 관련 노트
 - [[ ]]

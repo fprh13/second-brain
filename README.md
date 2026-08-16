@@ -11,7 +11,7 @@ Vault
 ├─ 11 Areas
 ├─ 12 Resources
 ├─ 13 Archive
-├─ 14 Templates
+├─ 99 Templates
 ├─ attachments
 ├─ docs
 ├─ AGENTS.md
@@ -28,6 +28,6 @@ Vault
 | `11 Areas`     | 지속 관리 영역           |
 | `12 Resources` | 참고 자료 정리           |
 | `13 Archive`   | 종료된 정보 보관          |
-| `14 Templates` | 노트 템플릿             |
+| `99 Templates` | 노트 템플릿             |
 | `attachments`  | 스크린샷, 다이어그램, 일반 파일 |
 

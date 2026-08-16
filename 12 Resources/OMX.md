@@ -58,7 +58,11 @@ omx hooks ...
 - CLI 레퍼런스: https://yeachan-heo.github.io/oh-my-codex-website/docs.html#cli-reference
 - 릴리스 노트: https://yeachan-heo.github.io/oh-my-codex-website/docs.html#release-notes
 
+---
+
 ## 📚 참고 및 링크
 - [[ ]]
+
+---
 
 ## 🔗 관련 노트
