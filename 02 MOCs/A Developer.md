@@ -8,31 +8,32 @@ tags:
 
 ---
 
-## 📄 설명
-개발자 영역입니다.
-모든 MOC를 관리합니다.
+## 🔗 목록
+### Development
+- [[Java]]
+- [[Spring]]
+- [[JPA]]
+- [[Database]]
+- [[Web]]
+- [[Frontend]]
+
+### Engineering
+- [[Design]]
+- [[Security]]
+- [[Test]]
+
+### Environment
+- [[Development Environment]]
+- [[Git]]
+- [[Infra]]
+
+### Emerging Tech
+- [[AI]]
+
+### ETC
+- [[Project]]
 
 ---
 
-## ✏️ 메모
-[[AI]]
-[[Database]]
-[[Design]]
-[[Development Environment]]
-[[JPA]]
-[[Web]]
-[[Project]]
-[[Spring]]
-[[Git]]
-[[Infra]]
-[[Java]]
-[[Security]]
-[[Test]]
-[[Frontend]]
-
-
 ## 📚 참고 및 링크
-- [[ ]]
-
-## 🔗 관련 노트
 - [[ ]]

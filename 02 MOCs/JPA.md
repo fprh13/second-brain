@@ -8,17 +8,11 @@ tags:
 
 ---
 
-## 📄 설명
-JPA 영역입니다.
+## 🔗 목록
+- [[../01 Permanent/@Param|@Param]]
+- [[../01 Permanent/Cascade vs orphanRemoval|Cascade vs orphanRemoval]]
 
 ---
 
-## ✏️ 메모
-[[../01 Permanent/@Param|@Param]]
-[[../01 Permanent/Cascade vs orphanRemoval|Cascade vs orphanRemoval]]
-
 ## 📚 참고 및 링크
-- [[ ]]
-
-## 🔗 관련 노트
 - [[ ]]
