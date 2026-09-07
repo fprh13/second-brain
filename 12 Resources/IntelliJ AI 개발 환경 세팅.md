@@ -204,4 +204,4 @@ Gemini를 사용하되, 다음과 같은 지침을 함께 제공합니다.
 ---
 
 ## 🔗 관련 노트
-- [[]]
+- [[../02 MOCs/Development Environment|Development Environment]]

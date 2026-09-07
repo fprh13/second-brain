@@ -49,5 +49,6 @@ tags:
 ---
 
 ## 🔗 관련 노트
+- [[../../02 MOCs/Project|Project]]
 - [[docs/AI 아키텍처|AI 아키텍처]]
 - [[docs/AI agent TiDD 기록|AI agent TiDD 기록]]
