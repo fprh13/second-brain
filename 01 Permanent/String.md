@@ -158,4 +158,4 @@ String string = sb.append("A").append("B").append("C").append("D")
 ---
 
 ## 🔗 관련 노트
-- [[ ]]
+- [[../02 MOCs/Java|Java]]

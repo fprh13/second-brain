@@ -93,4 +93,4 @@ tags:
 ---
 
 ## 🔗 관련 노트
-- [[ ]]
+- [[../02 MOCs/Design|Design]]

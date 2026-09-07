@@ -71,4 +71,4 @@ System.out.println("max: " + Integer.max(10, 20));
 ---
 
 ## 🔗 관련 노트
-- [[ ]]
+- [[../02 MOCs/Java|Java]]

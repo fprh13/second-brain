@@ -48,4 +48,4 @@ Command and Query Responsibility Segregation 데이터 저장소에 대한 읽�
 ---
 
 ## 🔗 관련 노트
-- 
+- [[../02 MOCs/Design|Design]]

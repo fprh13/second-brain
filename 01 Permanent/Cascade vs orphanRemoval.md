@@ -139,4 +139,4 @@ public class Team {
 ---
 
 ## 🔗 관련 노트
-- 
+- [[../02 MOCs/JPA|JPA]]
