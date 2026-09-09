@@ -56,4 +56,4 @@ public enum Grade {
 ---
 
 ## 🔗 관련 노트
-- [[ ]]
+- [[../02 MOCs/Java|Java]]
