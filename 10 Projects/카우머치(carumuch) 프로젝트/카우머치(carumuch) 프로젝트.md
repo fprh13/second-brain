@@ -52,3 +52,4 @@ tags:
 - [[../../02 MOCs/Project|Project]]
 - [[docs/AI 아키텍처|AI 아키텍처]]
 - [[docs/AI agent TiDD 기록|AI agent TiDD 기록]]
+- [[docs/notes/카우머치 소개|카우머치 소개]]
