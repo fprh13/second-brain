@@ -10,6 +10,7 @@ tags:
 
 ## 🔗 목록
 - [[Spring]]
+- [[../01 Permanent/Spring MVC|Spring MVC]]
 
 ---
 
