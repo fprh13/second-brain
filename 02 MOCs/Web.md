@@ -11,6 +11,7 @@ tags:
 ## 🔗 목록
 - [[../01 Permanent/SSE|SSE]]
 - [[../01 Permanent/HTTP 상태코드|HTTP 상태코드]]
+- [[../01 Permanent/OSI 7계층|OSI 7계층]]
 
 ---
 
