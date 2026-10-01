@@ -41,3 +41,4 @@ AWS S3를 이용한 이미지 업로드 및 관리 기능
 ## 🔗 관련 노트
 - [[../../02 MOCs/Project|Project]]
 - [[docs/notes/혼잡도 계산|혼잡도 계산]]
+- [[docs/notes/AWS 정지|AWS 정지]]
