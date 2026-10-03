@@ -15,6 +15,7 @@ tags:
 - [[../12 Resources/하네스 엔지니어링 혼자서도 돌아가는 AI 개발 시스템 구축 후기|하네스 엔지니어링 혼자서도 돌아가는 AI 개발 시스템 구축 후기]]
 - [[../12 Resources/AI 용어 정리|AI 용어 정리]]
 - [[../12 Resources/AI 자율학습 완전 활용법 codex 정리|AI 자율학습 완전 활용법 codex 정리]]
+- [[../01 Permanent/Codex GPT 모델 선정|Codex GPT 모델 선정]]
 
 ---
 
