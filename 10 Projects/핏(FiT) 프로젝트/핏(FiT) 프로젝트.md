@@ -43,3 +43,4 @@ AWS S3를 이용한 이미지 업로드 및 관리 기능
 - [[docs/notes/핏 소개|핏 소개]]
 - [[docs/notes/혼잡도 계산|혼잡도 계산]]
 - [[docs/notes/AWS 정지|AWS 정지]]
+- [[docs/notes/실시간 음성 스트리밍|실시간 음성 스트리밍]]
