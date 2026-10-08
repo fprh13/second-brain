@@ -56,3 +56,4 @@ tags:
 - [[docs/notes/DDD 기반 아키텍처로 개선|DDD 기반 아키텍처로 개선]]
 - [[docs/notes/AOP Filter Logging 모니터링|AOP Filter Logging 모니터링]]
 - [[docs/notes/API 문서 환경 개선|API 문서 환경 개선]]
+- [[docs/notes/AI Agent-Git 검증 흐름 통합 하네스 구축|AI Agent-Git 검증 흐름 통합 하네스 구축]]
