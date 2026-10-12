@@ -13,6 +13,7 @@ tags:
 - [[../12 Resources/유튜브 다중조인 N+1 강의 오류 발견 및 해결 방법|유튜브 다중조인 N+1 강의 오류 발견 및 해결 방법]]
 - [[../01 Permanent/데이터베이스 키|데이터베이스 키]]
 - [[../01 Permanent/SQL 실행 순서|SQL 실행 순서]]
+- [[../01 Permanent/Group by|Group by]]
 
 ---
 
