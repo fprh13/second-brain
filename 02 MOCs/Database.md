@@ -14,6 +14,7 @@ tags:
 - [[../01 Permanent/데이터베이스 키|데이터베이스 키]]
 - [[../01 Permanent/SQL 실행 순서|SQL 실행 순서]]
 - [[../01 Permanent/Group by|Group by]]
+- [[../01 Permanent/정규화|정규화]]
 
 ---
 
