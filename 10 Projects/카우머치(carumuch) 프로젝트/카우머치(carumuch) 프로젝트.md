@@ -59,3 +59,4 @@ tags:
 - [[docs/notes/AI Agent-Git 검증 흐름 통합 하네스 구축|AI Agent-Git 검증 흐름 통합 하네스 구축]]
 - [[docs/notes/메세지 큐 도입|메세지 큐 도입]]
 - [[docs/notes/AI Code Review|AI Code Review]]
+- [[docs/notes/JWT 개선|JWT 개선]]
