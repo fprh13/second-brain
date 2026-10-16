@@ -12,6 +12,7 @@ tags:
 - [[Spring]]
 - [[../01 Permanent/Spring MVC|Spring MVC]]
 - [[../01 Permanent/Spring Data|Spring Data]]
+- [[../01 Permanent/Spring Boot 4|Spring Boot 4]]
 
 ---
 
