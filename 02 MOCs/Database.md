@@ -15,6 +15,7 @@ tags:
 - [[../01 Permanent/SQL 실행 순서|SQL 실행 순서]]
 - [[../01 Permanent/Group by|Group by]]
 - [[../01 Permanent/정규화|정규화]]
+- [[../01 Permanent/이상현상|이상현상]]
 
 ---
 
