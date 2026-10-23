@@ -12,6 +12,7 @@ tags:
 - [[../01 Permanent/@Param|@Param]]
 - [[../01 Permanent/Cascade vs orphanRemoval|Cascade vs orphanRemoval]]
 - [[../01 Permanent/쿼리 작성 방식과 메서드 네이밍 규칙|쿼리 작성 방식과 메서드 네이밍 규칙]]
+- [[../01 Permanent/JPA 락|JPA 락]]
 
 ---
 
