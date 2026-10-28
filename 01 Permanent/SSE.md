@@ -10,9 +10,9 @@ tags:
 ## 📄 본문
 
 ### SSE(Server Sent Event)
-서버로부터 클라이언트에 실시간으로 데이터를 전달할 수 있는 기술 중 하나 입니다.
-클라이언트가 서버와 HTTP 연결을 맺어두면, 서버에서 데이터의 변화가 있을 때 마다 응답을 보냅니다.
-Polling 방식에 비해 SSE를 이용하면 HTTP 연결을 한 번만 맺기 때문에 HTTP 연결에 대한 오버헤드가 줄어듭니다.
+서버로부터 클라이언트에 실시간으로 데이터를 전달할 수 있는 기술 중 하나 이다.
+클라이언트가 서버와 HTTP 연결을 맺어두면, 서버에서 데이터의 변화가 있을 때 마다 응답을 보낸다.
+Polling 방식에 비해 SSE를 이용하면 HTTP 연결을 한 번만 맺기 때문에 HTTP 연결에 대한 오버헤드가 줄어든다.
 
 ### SSE 특징
 - 프로토콜: HTTP
@@ -21,8 +21,8 @@ Polling 방식에 비해 SSE를 이용하면 HTTP 연결을 한 번만 맺기 �
 - 기타: 자동 재연결 지원, socket보다 더 적은 메모리 및 CPU 소비
 
 ### SSE 구현 예시
-Spring Boot를 이용한 SSE 구현 예시 코드입니다.
-주기적으로 사용 가능한 토큰을 전송하는 예시입니다.
+Spring Boot를 이용한 SSE 구현 예시 코드이다.
+주기적으로 사용 가능한 토큰을 전송하는 예시이다.
 
 #### Service
 ```java
@@ -102,11 +102,11 @@ public class TokenSseController {
 ```
 
 #### 예시 코드 해설
-- `new SseEmitter(...)`: 이 객체를 통해 서버가 클라이언트에게 이벤트를 보냅니다.
-- `emitters.put(userId, emitter)`: 유저별 SSE 연결을 메모리에 저장합니다. 나중에 해당 유저에게 다시 push하거나 정리하기 위함입니다.
-- `onCompletion`, `onTimeout`, `onError`: 브라우저가 닫히거나 연결이 끊기면 메모리에서 제거합니다. 메모리 누수 방지를 위한 처리입니다.
-- `startPolling(...)`: 별도 스레드에서 무한 루프를 돌리면서 3초마다 DB를 조회하고 SSE로 전송하는 코드입니다.
-- `SSEController`: `GET /sse/tokens/1`로 접속하면 SSE 연결이 시작됩니다.
+- `new SseEmitter(...)`: 이 객체를 통해 서버가 클라이언트에게 이벤트를 보낸다.
+- `emitters.put(userId, emitter)`: 유저별 SSE 연결을 메모리에 저장한다. 나중에 해당 유저에게 다시 push하거나 정리하기 위함이다.
+- `onCompletion`, `onTimeout`, `onError`: 브라우저가 닫히거나 연결이 끊기면 메모리에서 제거한다. 메모리 누수 방지를 위한 처리이다.
+- `startPolling(...)`: 별도 스레드에서 무한 루프를 돌리면서 3초마다 DB를 조회하고 SSE로 전송하는 코드이다.
+- `SSEController`: `GET /sse/tokens/1`로 접속하면 SSE 연결이 시작된다.
 
 
 ---
