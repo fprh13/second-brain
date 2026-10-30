@@ -16,6 +16,7 @@ tags:
 - [[../12 Resources/AI 용어 정리|AI 용어 정리]]
 - [[../12 Resources/AI 자율학습 완전 활용법 codex 정리|AI 자율학습 완전 활용법 codex 정리]]
 - [[../01 Permanent/Codex GPT 모델 선정|Codex GPT 모델 선정]]
+- [[../12 Resources/herdr|herdr]]
 
 ---
 
