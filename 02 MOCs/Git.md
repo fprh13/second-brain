@@ -9,9 +9,12 @@ tags:
 ---
 
 ## 🔗 목록
+
 - [[../01 Permanent/worktree|worktree]]
+- [[../01 Permanent/diff|diff]]
 
 ---
 
 ## 📚 참고 및 링크
+
 - [[A Developer]]
