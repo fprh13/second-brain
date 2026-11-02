@@ -12,6 +12,7 @@ tags:
 
 - [[../01 Permanent/worktree|worktree]]
 - [[../01 Permanent/diff|diff]]
+- [[../01 Permanent/checkout vs switch|checkout vs switch]]
 
 ---
 
