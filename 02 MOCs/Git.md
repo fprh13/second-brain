@@ -13,6 +13,7 @@ tags:
 - [[../01 Permanent/worktree|worktree]]
 - [[../01 Permanent/diff|diff]]
 - [[../01 Permanent/checkout vs switch|checkout vs switch]]
+- [[../01 Permanent/reset vs restore|reset vs restore]]
 
 ---
 
