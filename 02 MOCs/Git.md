@@ -10,10 +10,15 @@ tags:
 
 ## 🔗 목록
 
+#### 개념
 - [[../01 Permanent/worktree|worktree]]
 - [[../01 Permanent/diff|diff]]
 - [[../01 Permanent/checkout vs switch|checkout vs switch]]
 - [[../01 Permanent/reset vs restore|reset vs restore]]
+- [[../01 Permanent/cherry-pick|cherry-pick]]
+
+#### 실습
+- [[../12 Resources/cherry-pick 실습|cherry-pick 실습]]
 
 ---
 
