@@ -18,11 +18,13 @@ tags:
 - [[../01 Permanent/cherry-pick|cherry-pick]]
 - [[../01 Permanent/stash|stash]]
 - [[../01 Permanent/rebase|rebase]]
+- [[../01 Permanent/revert|revert]]
 
 #### 실습
 - [[../12 Resources/cherry-pick 실습|cherry-pick 실습]]
 - [[../12 Resources/stash 실습|stash 실습]]
 - [[../12 Resources/rebase 실습|rebase 실습]]
+- [[../12 Resources/revert 실습|revert 실습]]
 
 ---
 
