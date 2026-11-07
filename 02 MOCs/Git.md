@@ -25,6 +25,7 @@ tags:
 - [[../12 Resources/stash 실습|stash 실습]]
 - [[../12 Resources/rebase 실습|rebase 실습]]
 - [[../12 Resources/revert 실습|revert 실습]]
+- [[../12 Resources/add -p 실습|add -p 실습]]
 
 ---
 
