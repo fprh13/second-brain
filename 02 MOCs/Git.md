@@ -29,6 +29,7 @@ tags:
 - [[../12 Resources/revert 실습|revert 실습]]
 - [[../12 Resources/add -p 실습|add -p 실습]]
 - [[../12 Resources/reflog 실습|reflog 실습]]
+- [[../12 Resources/commit 실습|commit 실습]]
 
 ---
 
