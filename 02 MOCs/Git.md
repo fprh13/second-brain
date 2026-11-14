@@ -21,6 +21,7 @@ tags:
 - [[../01 Permanent/revert|revert]]
 - [[../01 Permanent/reflog|reflog]]
 - [[../01 Permanent/bisect|bisect]]
+- [[../01 Permanent/blame|blame]]
 
 #### 실습
 - [[../12 Resources/cherry-pick 실습|cherry-pick 실습]]

@@ -274,3 +274,4 @@ git bisect reset
 ## 🔗 관련 노트
 
 - [[../02 MOCs/Git|Git]]
+- [[../12 Resources/bisect 실습|bisect 실습]]
