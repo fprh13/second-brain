@@ -224,3 +224,4 @@ git blame -- RabbitMqConfig.java
 ## 🔗 관련 노트
 
 - [[../02 MOCs/Git|Git]]
+- [[../12 Resources/blame 실습|blame 실습]]

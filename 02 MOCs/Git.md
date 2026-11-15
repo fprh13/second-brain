@@ -32,6 +32,7 @@ tags:
 - [[../12 Resources/reflog 실습|reflog 실습]]
 - [[../12 Resources/bisect 실습|bisect 실습]]
 - [[../12 Resources/commit 실습|commit 실습]]
+- [[../12 Resources/blame 실습|blame 실습]]
 
 ---
 
