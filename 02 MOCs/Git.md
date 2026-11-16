@@ -34,6 +34,9 @@ tags:
 - [[../12 Resources/commit 실습|commit 실습]]
 - [[../12 Resources/blame 실습|blame 실습]]
 
+#### 사용법
+- [[../12 Resources/remote 사용법|remote 사용법]]
+
 ---
 
 ## 📚 참고 및 링크
