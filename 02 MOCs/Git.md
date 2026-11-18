@@ -37,6 +37,7 @@ tags:
 #### 사용법
 - [[../12 Resources/remote 사용법|remote 사용법]]
 - [[../12 Resources/config 사용법|config 사용법]]
+- [[../12 Resources/push 사용법|push 사용법]]
 
 ---
 
