@@ -1,0 +1,1815 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "도키도키 API 계약 초안",
+    "version": "0.1.0-draft",
+    "description": "백엔드 미구현 상태의 프론트엔드/MSW 계약 제안입니다. docs/03-api-and-msw.md와 05-open-questions.md의 가정을 확인합니다."
+  },
+  "servers": [
+    {
+      "url": "/api/v1",
+      "description": "동일 origin 프록시 기준"
+    }
+  ],
+  "security": [
+    {
+      "sessionCookie": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "auth",
+      "description": "인증"
+    },
+    {
+      "name": "me",
+      "description": "내 정보"
+    },
+    {
+      "name": "anime",
+      "description": "작품 카탈로그"
+    },
+    {
+      "name": "recommendations",
+      "description": "개인 추천"
+    },
+    {
+      "name": "records",
+      "description": "시청 기록"
+    }
+  ],
+  "paths": {
+    "/auth/csrf": {
+      "get": {
+        "operationId": "getCsrfToken",
+        "summary": "CSRF 토큰 조회",
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CsrfToken"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "security": []
+      }
+    },
+    "/auth/signup": {
+      "post": {
+        "operationId": "signup",
+        "summary": "회원가입과 세션 발급 (가정 A01)",
+        "responses": {
+          "201": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "headers": {
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "HttpOnly; Secure; SameSite=Lax; Path=/ 세션 쿠키. 로그아웃은 Max-Age=0입니다."
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "operationId": "login",
+        "summary": "이메일 로그인",
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "headers": {
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "HttpOnly; Secure; SameSite=Lax; Path=/ 세션 쿠키. 로그아웃은 Max-Age=0입니다."
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Credentials"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "operationId": "logout",
+        "summary": "세션 종료",
+        "responses": {
+          "204": {
+            "description": "성공",
+            "headers": {
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "HttpOnly; Secure; SameSite=Lax; Path=/ 세션 쿠키. 로그아웃은 Max-Age=0입니다."
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/me": {
+      "get": {
+        "operationId": "getMe",
+        "summary": "현재 사용자 조회",
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "me"
+        ]
+      },
+      "patch": {
+        "operationId": "updateProfile",
+        "summary": "닉네임 수정",
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "me"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/anime": {
+      "get": {
+        "operationId": "searchAnime",
+        "summary": "작품 제목 검색",
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnimePage"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "anime"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Query"
+          },
+          {
+            "$ref": "#/components/parameters/Cursor"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          }
+        ],
+        "description": "title,id 순 정렬. 사용자별 recordId를 포함합니다."
+      }
+    },
+    "/anime/{animeId}": {
+      "get": {
+        "operationId": "getAnime",
+        "summary": "작품 상세와 개인화 정보",
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnimeDetail"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "anime"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/AnimeId"
+          }
+        ]
+      }
+    },
+    "/recommendations": {
+      "get": {
+        "operationId": "getRecommendations",
+        "summary": "개인 추천 최대 10개",
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecommendationList"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "recommendations"
+        ],
+        "description": "ready/updating/unavailable 및 starter/personalized. 기록된 작품 제외, 부족하면 10개 미만을 반환합니다. updating은 2초 간격 최대 30초 조회를 제안합니다."
+      }
+    },
+    "/records/summary": {
+      "get": {
+        "operationId": "getRecordSummary",
+        "summary": "전체 시청 이력 건수",
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordSummary"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "records"
+        ]
+      }
+    },
+    "/records": {
+      "get": {
+        "operationId": "listRecords",
+        "summary": "시청 이력 검색과 필터",
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "records"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Query"
+          },
+          {
+            "$ref": "#/components/parameters/Status"
+          },
+          {
+            "$ref": "#/components/parameters/Cursor"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          }
+        ],
+        "description": "updatedAt 내림차순,id 순으로 정렬합니다. 건수는 필터와 무관한 summary를 사용합니다."
+      },
+      "post": {
+        "operationId": "createRecord",
+        "summary": "시청 기록 생성",
+        "responses": {
+          "201": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Record"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "records"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Idempotency"
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRecordInput"
+              }
+            }
+          }
+        },
+        "description": "사용자+작품 중복은 RECORD_ALREADY_EXISTS 및 existingRecordId를 반환합니다. 같은 멱등키와 body는 최초 성공 결과를 반환합니다."
+      }
+    },
+    "/records/{recordId}": {
+      "get": {
+        "operationId": "getRecord",
+        "summary": "시청 기록 상세",
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Record"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "records"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RecordId"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "replaceRecord",
+        "summary": "시청 상태와 평가 또는 사유 전체 교체",
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Record"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "records"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RecordId"
+          },
+          {
+            "$ref": "#/components/parameters/Version"
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReplaceRecordInput"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteRecord",
+        "summary": "시청 기록 삭제",
+        "responses": {
+          "204": {
+            "description": "성공"
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "default": {
+            "description": "그 외 오류",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "records"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RecordId"
+          },
+          {
+            "$ref": "#/components/parameters/Version"
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "sessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "doki_session"
+      }
+    },
+    "parameters": {
+      "AnimeId": {
+        "name": "animeId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "RecordId": {
+        "name": "recordId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "Query": {
+        "name": "q",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "maxLength": 100,
+          "default": ""
+        },
+        "description": "앞뒤 공백 제거 후 제목 부분 검색. 빈 문자열은 초기 목록입니다."
+      },
+      "Cursor": {
+        "name": "cursor",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": "이전 응답 nextCursor. 검색 조건이 달라지면 제거합니다."
+      },
+      "Limit": {
+        "name": "limit",
+        "in": "query",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 20
+        }
+      },
+      "Status": {
+        "name": "status",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "completed",
+            "stopped"
+          ]
+        },
+        "description": "전체 조회는 생략합니다."
+      },
+      "Csrf": {
+        "name": "X-CSRF-Token",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "Version": {
+        "name": "If-Match",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "pattern": "^\"[1-9][0-9]*\"$"
+        },
+        "example": "\"1\"",
+        "description": "조회한 record.version의 따옴표 포함 문자열. 충돌 412, 누락 428입니다."
+      },
+      "Idempotency": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "description": "사용자별 24시간 보관 가정. 동일 body 재시도는 같은 키, 다른 body는 새 키입니다."
+      }
+    },
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "nickname": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 16
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "nickname"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "id": "user-doki",
+            "email": "doki@example.com",
+            "nickname": "도키"
+          }
+        ]
+      },
+      "Credentials": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 254
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "email": "doki@example.com",
+            "password": "mock-password"
+          }
+        ]
+      },
+      "SignupInput": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 254
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 128,
+            "writeOnly": true
+          },
+          "nickname": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 16,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "nickname"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "email": "doki@example.com",
+            "password": "mock-password",
+            "nickname": "도키"
+          }
+        ]
+      },
+      "ProfileInput": {
+        "type": "object",
+        "properties": {
+          "nickname": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 16,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "nickname"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "nickname": "설렘수집가"
+          }
+        ]
+      },
+      "CsrfToken": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "token": "mock-csrf-token"
+          }
+        ]
+      },
+      "Anime": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "posterUrl": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri-reference"
+          },
+          "recordId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "posterUrl",
+          "recordId"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "id": "anime-0",
+            "title": "호리미야",
+            "posterUrl": "/assets/photos/anime-0.jpg",
+            "recordId": null
+          }
+        ]
+      },
+      "RecommendationInfo": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "level",
+          "reason"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "level": "high",
+            "reason": "좋아한 인물 간 대화와 빠른 관계 전개"
+          }
+        ]
+      },
+      "AnimeDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "posterUrl": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri-reference"
+          },
+          "recordId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "recommendation": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/RecommendationInfo"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "posterUrl",
+          "recordId",
+          "recommendation"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "id": "anime-0",
+            "title": "호리미야",
+            "posterUrl": "/assets/photos/anime-0.jpg",
+            "recordId": null,
+            "recommendation": {
+              "level": "high",
+              "reason": "좋아한 인물 간 대화와 빠른 관계 전개"
+            }
+          }
+        ]
+      },
+      "Recommendation": {
+        "type": "object",
+        "properties": {
+          "anime": {
+            "$ref": "#/components/schemas/Anime"
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "anime",
+          "level",
+          "reason"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "anime": {
+              "id": "anime-0",
+              "title": "호리미야",
+              "posterUrl": "/assets/photos/anime-0.jpg",
+              "recordId": null
+            },
+            "level": "high",
+            "reason": "좋아한 인물 간 대화와 빠른 관계 전개"
+          }
+        ]
+      },
+      "RecommendationList": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "updating",
+              "unavailable"
+            ]
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "personalized",
+              "starter"
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Recommendation"
+            },
+            "maxItems": 10
+          },
+          "generatedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "status",
+          "mode",
+          "items",
+          "generatedAt"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "status": "ready",
+            "mode": "personalized",
+            "items": [
+              {
+                "anime": {
+                  "id": "anime-0",
+                  "title": "호리미야",
+                  "posterUrl": "/assets/photos/anime-0.jpg",
+                  "recordId": null
+                },
+                "level": "high",
+                "reason": "좋아한 인물 간 대화와 빠른 관계 전개"
+              }
+            ],
+            "generatedAt": "2026-11-05T00:00:00Z"
+          }
+        ]
+      },
+      "CompletedEntry": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "completed"
+          },
+          "rating": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          }
+        },
+        "required": [
+          "status",
+          "rating"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "status": "completed",
+            "rating": 5
+          }
+        ]
+      },
+      "StoppedEntry": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "stopped"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "status",
+          "reason"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "status": "stopped",
+            "reason": "전개가 느려요"
+          }
+        ]
+      },
+      "WatchEntry": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CompletedEntry"
+          },
+          {
+            "$ref": "#/components/schemas/StoppedEntry"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "status",
+          "mapping": {
+            "completed": "#/components/schemas/CompletedEntry",
+            "stopped": "#/components/schemas/StoppedEntry"
+          }
+        },
+        "examples": [
+          {
+            "status": "completed",
+            "rating": 5
+          }
+        ]
+      },
+      "CreateRecordInput": {
+        "type": "object",
+        "properties": {
+          "animeId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "entry": {
+            "$ref": "#/components/schemas/WatchEntry"
+          }
+        },
+        "required": [
+          "animeId",
+          "entry"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "animeId": "anime-0",
+            "entry": {
+              "status": "completed",
+              "rating": 5
+            }
+          }
+        ]
+      },
+      "ReplaceRecordInput": {
+        "type": "object",
+        "properties": {
+          "entry": {
+            "$ref": "#/components/schemas/WatchEntry"
+          }
+        },
+        "required": [
+          "entry"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "entry": {
+              "status": "stopped",
+              "reason": "전개가 느려요"
+            }
+          }
+        ]
+      },
+      "Record": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "anime": {
+            "$ref": "#/components/schemas/Anime"
+          },
+          "entry": {
+            "$ref": "#/components/schemas/WatchEntry"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "anime",
+          "entry",
+          "version",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "id": "record-0",
+            "anime": {
+              "id": "anime-0",
+              "title": "호리미야",
+              "posterUrl": "/assets/photos/anime-0.jpg",
+              "recordId": "record-0"
+            },
+            "entry": {
+              "status": "completed",
+              "rating": 5
+            },
+            "version": 1,
+            "createdAt": "2026-11-05T00:00:00Z",
+            "updatedAt": "2026-11-05T00:00:00Z"
+          }
+        ]
+      },
+      "RecordSummary": {
+        "type": "object",
+        "properties": {
+          "completedCount": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "stoppedCount": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "totalCount": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "completedCount",
+          "stoppedCount",
+          "totalCount"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "completedCount": 1,
+            "stoppedCount": 1,
+            "totalCount": 2
+          }
+        ]
+      },
+      "AnimePage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Anime"
+            }
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "items": [
+              {
+                "id": "anime-0",
+                "title": "호리미야",
+                "posterUrl": "/assets/photos/anime-0.jpg",
+                "recordId": null
+              }
+            ],
+            "nextCursor": null
+          }
+        ]
+      },
+      "RecordPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Record"
+            }
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "items": [
+              {
+                "id": "record-0",
+                "anime": {
+                  "id": "anime-0",
+                  "title": "호리미야",
+                  "posterUrl": "/assets/photos/anime-0.jpg",
+                  "recordId": "record-0"
+                },
+                "entry": {
+                  "status": "completed",
+                  "rating": 5
+                },
+                "version": 1,
+                "createdAt": "2026-11-05T00:00:00Z",
+                "updatedAt": "2026-11-05T00:00:00Z"
+              }
+            ],
+            "nextCursor": null
+          }
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "fieldErrors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "message"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "requestId": {
+            "type": "string"
+          },
+          "existingRecordId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "additionalProperties": false,
+        "examples": [
+          {
+            "code": "RECORD_ALREADY_EXISTS",
+            "message": "이미 기록한 작품입니다.",
+            "existingRecordId": "record-0",
+            "requestId": "mock-request-1"
+          }
+        ]
+      }
+    },
+    "responses": {
+      "Error400": {
+        "description": "잘못된 요청/커서",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error401": {
+        "description": "인증 실패 또는 세션 만료",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error403": {
+        "description": "CSRF 검증 실패",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error404": {
+        "description": "대상이 없거나 접근할 수 없음",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error409": {
+        "description": "중복 계정/기록 또는 멱등키 충돌",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error412": {
+        "description": "기록 version 충돌",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error422": {
+        "description": "필드/도메인 유효성 오류",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error428": {
+        "description": "If-Match 필요",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error429": {
+        "description": "요청 제한",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        },
+        "headers": {
+          "Retry-After": {
+            "schema": {
+              "type": "string"
+            },
+            "description": "대기 초 또는 HTTP-date"
+          }
+        }
+      },
+      "Error503": {
+        "description": "일시적 서비스 불가",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}
